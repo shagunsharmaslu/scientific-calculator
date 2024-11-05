@@ -17,12 +17,7 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
           cache: pip
-
-      # Installing dependencies (if you have a requirements.txt file)
-      - name: Install dependencies
-        run: |
-          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-
+          
       # Running the Python test script
       - name: Run Python tests
         run: python3 -m unittest test_scientific_calculator.py
