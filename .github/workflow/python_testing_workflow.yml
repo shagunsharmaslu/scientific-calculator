@@ -1,0 +1,29 @@
+name: GitHub Actions Python Execution
+run-name: Testing GitHub Actions for Python script
+
+on: [push]
+
+jobs:
+  trail-python-run:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Cloning the GitHub repository to the runner system
+      - uses: actions/checkout@v4
+
+      # Setting up Python on the runner system
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: pip
+
+      # Installing dependencies (if you have a requirements.txt file)
+      - name: Install dependencies
+        run: |
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+
+      # Running the Python test script
+      - name: Run Python tests
+        run: |
+          python -m unittest discover -s tests -p 'test_scientific_calculator.py'
