@@ -25,5 +25,4 @@ jobs:
 
       # Running the Python test script
       - name: Run Python tests
-        run: |
-          python -m unittest discover -s tests -p 'test_scientific_calculator.py'
+        run: python3 -m unittest test_scientific_calculator.py
